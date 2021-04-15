@@ -2,9 +2,17 @@ let timer = 60;
 let questionNumber = 0;
 
 const homeCard = document.getElementById("homeCard");
-const questionContainer = document.getElementById("questionContainer");
+const score1 = document.getElementById("score1");
+const score2 = document.getElementById("score2");
+const score3 = document.getElementById("score3");
 
-const 
+const questionContainer = document.getElementById("questionContainer");
+const question = document.getElementById("question");
+const answer1 = document.getElementById("answer1");
+const answer2 = document.getElementById("answer2");
+const answer3 = document.getElementById("answer3");
+
+
 //Array of question objects
 const questions = [
     {
