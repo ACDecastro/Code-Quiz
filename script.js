@@ -1,8 +1,11 @@
 let timer = 60;
 let questionNumber = 0;
 
-//Array of question objects
+const homeCard = document.getElementById("homeCard");
+const questionContainer = document.getElementById("questionContainer");
 
+const 
+//Array of question objects
 const questions = [
     {
         question: "Which of these is not a programming language?",
