@@ -1,5 +1,6 @@
-let timer = 60;
+let timeLeft = 60;
 let questionNumber = 0;
+let score = 0;
 
 const homeCard = document.getElementById("homeCard");
 const score1 = document.getElementById("score1");
@@ -12,6 +13,7 @@ const answer1 = document.getElementById("answer1");
 const answer2 = document.getElementById("answer2");
 const answer3 = document.getElementById("answer3");
 
+const startButton = document.getElementById("startButton");
 
 //Array of question objects
 const questions = [
@@ -74,6 +76,12 @@ function punish(){
 }
 
 function fetchScores(){
-    //get the scores from local storage and display them in a modal
+    //get the scores from local storage and write them to the scoreboard
 
 }
+function buttonClick(){
+    console.log("starting quiz...");
+    
+}
+
+startButton.addEventListener("click", buttonClick);
