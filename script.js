@@ -75,6 +75,8 @@ function quiz(){
 function countdown(){
     //ends the quiz if timer gets to zero
     //Stops timer if the quiz ends
+    setTimeout(()=>{
+    }, 1000);
 }
 
 function punish(){
