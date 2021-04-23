@@ -12,6 +12,7 @@ const question = document.getElementById("question");
 const answer1 = document.getElementById("answer1");
 const answer2 = document.getElementById("answer2");
 const answer3 = document.getElementById("answer3");
+const answer4 = document.getElementById("answer4");
 
 const startButton = document.getElementById("startButton");
 
@@ -61,7 +62,13 @@ const questions = [
 
 function quiz(){
     //display question and possible answers
-
+    //questionNumber
+    const currentQuestion = questions[questionNumber];
+    question.innerHTML = currentQuestion.question;
+    answer1.innerHTML = currentQuestion.answer1;
+    answer2.innerHTML = currentQuestion.answer2;
+    answer3.innerHTML = currentQuestion.answer3;
+    answer4.innerHTML = currentQuestion.answer4;
     //if question is answered wrong, punish(), else display new question
 }
 
@@ -83,6 +90,7 @@ function buttonClick(){
     console.log("starting quiz...");
     homeCard.style.display = "none";
     questionContainer.style.display = "block";
+    quiz();
 }
 
 startButton.addEventListener("click", buttonClick);
