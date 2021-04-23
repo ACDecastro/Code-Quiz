@@ -81,7 +81,8 @@ function fetchScores(){
 }
 function buttonClick(){
     console.log("starting quiz...");
-    
+    homeCard.style.display = "none";
+    questionContainer.style.display = "block";
 }
 
 startButton.addEventListener("click", buttonClick);
