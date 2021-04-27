@@ -79,6 +79,10 @@ function countdown(){
     }, 1000);
 }
 
+function checkAnswer(answerNum){
+
+}
+
 function punish(){
     //subtract 5 seconds from the timer
     timer = timer-5;
@@ -96,3 +100,7 @@ function buttonClick(){
 }
 
 startButton.addEventListener("click", buttonClick);
+answer1.addEventListener("click", checkAnswer(1));
+answer2.addEventListener("click", checkAnswer(2));
+answer3.addEventListener("click", checkAnswer(3));
+answer4.addEventListener("click", checkAnswer(4));
