@@ -65,17 +65,17 @@ function quiz(){
     //questionNumber
     const currentQuestion = questions[questionNumber];
     question.innerHTML = currentQuestion.question;
-    answer1.innerHTML = currentQuestion.answer1;
-    answer2.innerHTML = currentQuestion.answer2;
-    answer3.innerHTML = currentQuestion.answer3;
-    answer4.innerHTML = currentQuestion.answer4;
+    answer1.innerHTML = currentQuestion.choice1;
+    answer2.innerHTML = currentQuestion.choice2;
+    answer3.innerHTML = currentQuestion.choice3;
+    answer4.innerHTML = currentQuestion.choice4;
     //if question is answered wrong, punish(), else display new question
 }
 
+let timer;
 function countdown(){
     //ends the quiz if timer gets to zero
-    //Stops timer if the quiz ends
-    setTimeout(()=>{
+    timer = setTimeout(()=>{
     }, 1000);
 }
 
