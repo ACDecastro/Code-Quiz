@@ -2,11 +2,17 @@ let timeLeft = 60;
 let questionNumber = 0;
 let score = 0;
 
+//Timer and score html elements
+const timerEl = document.getElementById("timer");
+const scoreEl = document.getElementById("score");
+
+//homecard and high score elements
 const homeCard = document.getElementById("homeCard");
 const score1 = document.getElementById("score1");
 const score2 = document.getElementById("score2");
 const score3 = document.getElementById("score3");
 
+//Question container quiz elements
 const questionContainer = document.getElementById("questionContainer");
 const question = document.getElementById("question");
 const answer1 = document.getElementById("answer1");
@@ -61,15 +67,18 @@ const questions = [
 ]
 
 function quiz(){
-    //display question and possible answers
-    //questionNumber
-    const currentQuestion = questions[questionNumber];
-    question.innerHTML = currentQuestion.question;
-    answer1.innerHTML = currentQuestion.choice1;
-    answer2.innerHTML = currentQuestion.choice2;
-    answer3.innerHTML = currentQuestion.choice3;
-    answer4.innerHTML = currentQuestion.choice4;
-    //if question is answered wrong, punish(), else display new question
+    if(questionNumber >= questions.length){
+        endQuiz();
+    }
+    else{
+        //display question and possible answers
+        const currentQuestion = questions[questionNumber];
+        question.innerHTML = currentQuestion.question;
+        answer1.innerHTML = currentQuestion.answer1;
+        answer2.innerHTML = currentQuestion.answer2;
+        answer3.innerHTML = currentQuestion.answer3;
+        answer4.innerHTML = currentQuestion.answer4;
+    }
 }
 
 let timer;
@@ -79,15 +88,44 @@ function countdown(){
     }, 1000);
 }
 
+function checkAnswer(answerNum){
+    //Check if the selected answer matches the true answer of the current question
+    if(answerNum == questions[questionNumber.trueAnswer]){
+        reward();
+        //If the answer is correct, add to the score
+    }
+    else{
+        punish();
+    }
+    //Go to next question
+    questionNumber++;
+    //Display next question
+    quiz();
+}
+
+function reward(){
+    score++;
+    scoreEl.innerHTML = score;
+}
 function punish(){
     //subtract 5 seconds from the timer
     timer = timer-5;
+}
+
+function endQuiz(){
+    //Write score to local storage
+    //Hide quiz card
+    //Reset timer, score, questionNumber
+    //Get scores from local storage and write them to the homecard.
+    fetchScores();
+    //Bring up home card
 }
 
 function fetchScores(){
     //get the scores from local storage and write them to the scoreboard
 
 }
+
 function buttonClick(){
     console.log("starting quiz...");
     homeCard.style.display = "none";
@@ -96,3 +134,7 @@ function buttonClick(){
 }
 
 startButton.addEventListener("click", buttonClick);
+answer1.addEventListener("click", checkAnswer(1));
+answer2.addEventListener("click", checkAnswer(2));
+answer3.addEventListener("click", checkAnswer(3));
+answer4.addEventListener("click", checkAnswer(4));
