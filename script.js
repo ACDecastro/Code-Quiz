@@ -110,6 +110,7 @@ function reward(){
 function punish(){
     //subtract 5 seconds from the timer
     timer = timer-5;
+    timerEl.innerHTML = timer;
 }
 
 function endQuiz(){
