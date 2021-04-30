@@ -8,9 +8,10 @@ const scoreEl = document.getElementById("score");
 
 //homecard and high score elements
 const homeCard = document.getElementById("homeCard");
-const score1 = document.getElementById("score1");
-const score2 = document.getElementById("score2");
-const score3 = document.getElementById("score3");
+const score1El = document.getElementById("score1");
+const score2El = document.getElementById("score2");
+const score3El = document.getElementById("score3");
+const score4El = document.getElementById("score4");
 
 //Question container quiz elements
 const questionContainer = document.getElementById("questionContainer");
@@ -74,10 +75,10 @@ function quiz(){
         //display question and possible answers
         const currentQuestion = questions[questionNumber];
         question.innerHTML = currentQuestion.question;
-        answer1.innerHTML = currentQuestion.answer1;
-        answer2.innerHTML = currentQuestion.answer2;
-        answer3.innerHTML = currentQuestion.answer3;
-        answer4.innerHTML = currentQuestion.answer4;
+        answer1.innerHTML = currentQuestion.choice1;
+        answer2.innerHTML = currentQuestion.choice2;
+        answer3.innerHTML = currentQuestion.choice3;
+        answer4.innerHTML = currentQuestion.choice4;
     }
 }
 
@@ -90,6 +91,7 @@ function countdown(){
 
 function checkAnswer(answerNum){
     //Check if the selected answer matches the true answer of the current question
+    //console.log("You picked answer " + answerNum);
     if(answerNum == questions[questionNumber.trueAnswer]){
         reward();
         //If the answer is correct, add to the score
@@ -131,6 +133,8 @@ function buttonClick(){
     console.log("starting quiz...");
     homeCard.style.display = "none";
     questionContainer.style.display = "block";
+    timerEl.innerHTML = timeLeft;
+    scoreEl.innerHTML = score;
     quiz();
 }
 
@@ -139,3 +143,8 @@ answer1.addEventListener("click", checkAnswer(1));
 answer2.addEventListener("click", checkAnswer(2));
 answer3.addEventListener("click", checkAnswer(3));
 answer4.addEventListener("click", checkAnswer(4));
+
+score1El.addEventListener("click", clickChecker());
+function clickChecker(){
+    console.log("Click!");
+}
