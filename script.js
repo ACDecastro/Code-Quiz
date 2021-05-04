@@ -145,6 +145,6 @@ function buttonClick(){
 
 //Click listeners for the answer list items
 answer1El.addEventListener("click", function() {checkAnswer(1)});
-answer2El.addEventListener("click", checkAnswer(2));
-answer3El.addEventListener("click", checkAnswer(3));
-answer4El.addEventListener("click", checkAnswer(4));
+answer2El.addEventListener("click", function() {checkAnswer(2)});
+answer3El.addEventListener("click", function() {checkAnswer(3)});
+answer4El.addEventListener("click", function() {checkAnswer(4)});
