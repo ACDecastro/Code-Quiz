@@ -11,5 +11,9 @@
   }
 
   #questionContainer{
+    display: block
+  }
+
+  #homeCard{
     display: none
   }

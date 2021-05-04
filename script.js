@@ -7,21 +7,26 @@ const timerEl = document.getElementById("timer");
 const scoreEl = document.getElementById("score");
 
 //homecard and high score elements
-const homeCard = document.getElementById("homeCard");
+const homeCardEl = document.getElementById("homeCard");
 const score1El = document.getElementById("score1");
 const score2El = document.getElementById("score2");
 const score3El = document.getElementById("score3");
 const score4El = document.getElementById("score4");
 
 //Question container quiz elements
-const questionContainer = document.getElementById("questionContainer");
-const question = document.getElementById("question");
-const answer1 = document.getElementById("answer1");
-const answer2 = document.getElementById("answer2");
-const answer3 = document.getElementById("answer3");
-const answer4 = document.getElementById("answer4");
+const questionContainerEl = document.getElementById("questionContainer");
+const questionEl = document.getElementById("question");
+const answer1El = document.getElementById("answer1");
+const answer2El = document.getElementById("answer2");
+const answer3El = document.getElementById("answer3");
+const answer4El = document.getElementById("answer4");
 
-const startButton = document.getElementById("startButton");
+//Start button element
+const startButtonEl = document.getElementById("startButton");
+
+//Click listener for the Start Quiz button
+startButtonEl.addEventListener("click", buttonClick);
+
 
 //Array of question objects
 const questions = [
@@ -74,11 +79,11 @@ function quiz(){
     else{
         //display question and possible answers
         const currentQuestion = questions[questionNumber];
-        question.innerHTML = currentQuestion.question;
-        answer1.innerHTML = currentQuestion.choice1;
-        answer2.innerHTML = currentQuestion.choice2;
-        answer3.innerHTML = currentQuestion.choice3;
-        answer4.innerHTML = currentQuestion.choice4;
+        questionEl.innerText = currentQuestion.question;
+        answer1El.innerText = currentQuestion.choice1;
+        answer2El.innerText = currentQuestion.choice2;
+        answer3El.innerText = currentQuestion.choice3;
+        answer4El.innerText = currentQuestion.choice4;
     }
 }
 
@@ -91,8 +96,8 @@ function countdown(){
 
 function checkAnswer(answerNum){
     //Check if the selected answer matches the true answer of the current question
-    //console.log("You picked answer " + answerNum);
-    if(answerNum == questions[questionNumber.trueAnswer]){
+    console.log("You picked answer " + answerNum);
+    if(answerNum == questions[questionNumber].trueAnswer){
         reward();
         //If the answer is correct, add to the score
     }
@@ -131,20 +136,15 @@ function fetchScores(){
 
 function buttonClick(){
     console.log("starting quiz...");
-    homeCard.style.display = "none";
-    questionContainer.style.display = "block";
+    homeCardEl.style.display = "none"; //Hide the home card from view
+    questionContainerEl.style.display = "block"; //Show the question container
     timerEl.innerHTML = timeLeft;
     scoreEl.innerHTML = score;
     quiz();
 }
 
-startButton.addEventListener("click", buttonClick);
-answer1.addEventListener("click", checkAnswer(1));
-answer2.addEventListener("click", checkAnswer(2));
-answer3.addEventListener("click", checkAnswer(3));
-answer4.addEventListener("click", checkAnswer(4));
-
-score1El.addEventListener("click", clickChecker());
-function clickChecker(){
-    console.log("Click!");
-}
+//Click listeners for the answer list items
+answer1El.addEventListener("click", checkAnswer(1));
+answer2El.addEventListener("click", checkAnswer(2));
+answer3El.addEventListener("click", checkAnswer(3));
+answer4El.addEventListener("click", checkAnswer(4));
