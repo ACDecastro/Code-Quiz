@@ -11,9 +11,9 @@
   }
 
   #questionContainer{
-    display: block
+    display: none
   }
 
   #homeCard{
-    display: none
+    display: block
   }
