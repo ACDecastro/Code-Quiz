@@ -87,11 +87,9 @@ function quiz(){
     }
 }
 
-let timer;
 function countdown(){
     //ends the quiz if timer gets to zero
-    timer = setTimeout(()=>{
-    }, 1000);
+    setInterval(() => timeLeft--, 1000);
 }
 
 function checkAnswer(answerNum){
@@ -121,7 +119,12 @@ function punish(){
 }
 
 function endQuiz(){
+    //Stop timer
+    //Add time to score
+    //Check if score is greater than any of the other scores
+    //If it is, proceed. If not, end.
     //Write score to local storage
+    localStorage.setItem("score", score);
     //Hide quiz card
     //Reset timer, score, questionNumber
     //Get scores from local storage and write them to the homecard.
