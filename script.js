@@ -86,10 +86,16 @@ function quiz(){
         answer4El.innerText = currentQuestion.choice4;
     }
 }
-
-function countdown(){
-    //ends the quiz if timer gets to zero
-    setInterval(() => timeLeft--, 1000);
+let clock;
+function startTimer(){
+    console.log("timer has started");
+    clock = setInterval(() => {
+        if(timeLeft > 0){
+            timeLeft--;
+            timerEl.innerHTML = "Time Left: " + timeLeft;
+        }
+        //else endQuiz
+    }, 1000);
 }
 
 function checkAnswer(answerNum){
@@ -119,17 +125,27 @@ function punish(){
 }
 
 function endQuiz(){
-    //Stop timer
-    //Add time to score
+    const finalTime = timeLeft; //record time left
+    clearInterval(clock); //stop the timer
+    score += finalTime; //Add the time left to the score
+    const userInitials = prompt("Your final score was " + score + " Please enter your initials", "Type initials here");
     //Check if score is greater than any of the other scores
     //If it is, proceed. If not, end.
     //Write score to local storage
-    localStorage.setItem("score", score);
-    //Hide quiz card
-    //Reset timer, score, questionNumber
-    //Get scores from local storage and write them to the homecard.
+    const position = 1;
+    localStorage.setItem(position, JSON.stringify(
+            {
+                initials: userInitials,
+                finalScore: score
+            }
+        )
+    ); //retrieve later with JSON.parse();
+    timeLeft = 60;
+    score = 0;
+    questionNumber = 0;//Reset timer, score, questionNumber
+    questionContainerEl.style.display = "none"; //Hide quiz card
     fetchScores();
-    //Bring up home card
+    homeCardEl.style.display = "block" //Bring up home card
 }
 
 function fetchScores(){
@@ -141,9 +157,10 @@ function buttonClick(){
     console.log("starting quiz...");
     homeCardEl.style.display = "none"; //Hide the home card from view
     questionContainerEl.style.display = "block"; //Show the question container
-    timerEl.innerHTML = timeLeft;
-    scoreEl.innerHTML = score;
+    timerEl.innerHTML = "Time Left: " + timeLeft;
+    scoreEl.innerHTML = "Current Score: " + score;
     quiz();
+    startTimer();
 }
 
 //Click listeners for the answer list items
