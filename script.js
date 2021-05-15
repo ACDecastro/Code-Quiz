@@ -94,7 +94,7 @@ function startTimer(){
             timeLeft--;
             timerEl.innerHTML = "Time Left: " + timeLeft;
         }
-        //else endQuiz
+        else endQuiz();
     }, 1000);
 }
 
@@ -102,11 +102,10 @@ function checkAnswer(answerNum){
     //Check if the selected answer matches the true answer of the current question
     console.log("You picked answer " + answerNum);
     if(answerNum == questions[questionNumber].trueAnswer){
-        reward();
-        //If the answer is correct, add to the score
+        reward();//If the answer is correct, add to the score
     }
     else{
-        punish();
+        punish();//If the answer is wrong, subtract from the time.
     }
     //Go to next question
     questionNumber++;
@@ -128,29 +127,49 @@ function endQuiz(){
     const finalTime = timeLeft; //record time left
     clearInterval(clock); //stop the timer
     score += finalTime; //Add the time left to the score
-    const userInitials = prompt("Your final score was " + score + " Please enter your initials", "Type initials here");
-    //Check if score is greater than any of the other scores
-    //If it is, proceed. If not, end.
-    //Write score to local storage
-    const position = 1;
-    localStorage.setItem(position, JSON.stringify(
-            {
-                initials: userInitials,
-                finalScore: score
+    const userInitials = prompt("Your final score was " + score + ". Please enter your initials", "Type initials here");
+    const position = checkScores();//Check if score is greater than any of the other scores
+    
+    if(position<4){
+        if (position < 3){
+            for(i = 3; i > position; i--){ //goes through the scores from last place to the place of the user's new record, shifting the scores down one spot.
+                localStorage.setItem(i, localStorage.getItem(i-1));
             }
-        )
-    ); //retrieve later with JSON.parse();
-    timeLeft = 60;
-    score = 0;
-    questionNumber = 0;//Reset timer, score, questionNumber
+        }
+        localStorage.setItem(position, JSON.stringify( //Write score to local storage
+                {
+                    initials: userInitials,
+                    finalScore: score
+                }
+            )
+        );
+    }
+    else {
+        alert("Sorry, you did not beat any of the high scores. Please try again.");
+    }
+    timeLeft = 60;//Reset timer,
+    score = 0; // score, 
+    questionNumber = 0;//and questionNumber
     questionContainerEl.style.display = "none"; //Hide quiz card
     fetchScores();
     homeCardEl.style.display = "block" //Bring up home card
 }
 
+function checkScores(){
+    let position = 4;
+    for (i = 0; i < 4; i++){
+        if (JSON.parse(localStorage.getItem(i)).finalScore < score){
+            position = i;
+        }
+    }
+    return position;
+}
+
 function fetchScores(){
     //get the scores from local storage and write them to the scoreboard
-
+    for(i=1; i<=4; i++){
+        document.getElementById("score"+i);
+    }
 }
 
 function buttonClick(){
