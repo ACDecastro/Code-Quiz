@@ -115,12 +115,12 @@ function checkAnswer(answerNum){
 
 function reward(){
     score++;
-    scoreEl.innerHTML = score;
+    scoreEl.innerHTML = "Current score: " + score;
 }
 function punish(){
     //subtract 5 seconds from the timer
-    timer = timer-5;
-    timerEl.innerHTML = timer;
+    timeLeft = timeLeft-5;
+    timerEl.innerHTML = "Time left: "+timeLeft;
 }
 
 function endQuiz(){
