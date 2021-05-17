@@ -157,10 +157,19 @@ function endQuiz(){
 
 function checkScores(){
     let position = 4;
-    for (i = 0; i < 4; i++){
-        if (JSON.parse(localStorage.getItem(i)).finalScore < score){
+    for (i = 3; i >= 0; i--){
+        console.log("checking score number " + i);
+        if (localStorage.getItem(i) == null || localStorage.getItem(i) == "null"){
+            console.log(i + " is null");
             position = i;
         }
+        else{
+            console.log(i + " is not null. The value of i is "+ JSON.parse(localStorage.getItem(i)));
+            if(JSON.parse(localStorage.getItem(i)).finalScore < score){
+                position = i;
+            }
+        }
+
     }
     return position;
 }
@@ -168,7 +177,11 @@ function checkScores(){
 function fetchScores(){
     //get the scores from local storage and write them to the scoreboard
     for(i=1; i<=4; i++){
-        document.getElementById("score"+i);
+        let listing = document.getElementById("score"+i);
+        let scoreObject = JSON.parse(localStorage.getItem(i-1));
+        if(scoreObject!=null){
+            listing.innerHTML = "Score: "+scoreObject.finalScore;
+        }
     }
 }
 
