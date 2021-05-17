@@ -114,7 +114,7 @@ function checkAnswer(answerNum){
 }
 
 function reward(){
-    score++;
+    score = score + 3;
     scoreEl.innerHTML = "Current score: " + score;
 }
 function punish(){
@@ -126,7 +126,7 @@ function punish(){
 function endQuiz(){
     const finalTime = timeLeft; //record time left
     clearInterval(clock); //stop the timer
-    score += finalTime; //Add the time left to the score
+    score = score + finalTime; //Add the time left to the score
     const userInitials = prompt("Your final score was " + score + ". Please enter your initials", "Type initials here");
     const position = checkScores();//Check if score is greater than any of the other scores
     
@@ -180,7 +180,7 @@ function fetchScores(){
         let listing = document.getElementById("score"+i);
         let scoreObject = JSON.parse(localStorage.getItem(i-1));
         if(scoreObject!=null){
-            listing.innerHTML = "Score: "+scoreObject.finalScore;
+            listing.innerHTML = "Score: "+scoreObject.finalScore + " by: " + scoreObject.initials;
         }
     }
 }
