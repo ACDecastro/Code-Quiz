@@ -38,3 +38,8 @@ After clicking OK, your initials and score for that attempt will be saved and yo
 Your scores can also be seen using developer tools under the application tab.
 
 ![Dev tools](./pictures/image6.png)
+
+# Contact
+Contact me on LinkedIn or Github
+- https://www.linkedin.com/in/antonio-decastro-58090915a/
+- https://github.com/ACDecastro/
