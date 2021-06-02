@@ -10,9 +10,9 @@ Simply go to https://acdecastro.github.io/Code-Quiz/ .
 The code for this project can be viewed at https://github.com/ACDecastro/Code-Quiz .
 
 ## Technologies Used
-> Javascript
-> HTML
-> Bootstrap
+- Javascript
+- HTML
+- Bootstrap
 
 ## Usage
 After opening the webpage, click on the "Start Quiz" button.
